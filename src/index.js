@@ -15,6 +15,11 @@ import App from './App';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+
+import AdminRoute from './components/AdminRoute';
+import UserListScreen from './screens/admin/UserListScreen';
+import UserEditScreen from './screens/admin/UserEditScreen';
 
 import './index.css';
 import './assets/styles/index.css';
@@ -26,6 +31,11 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/product/:id" element={<ProductScreen />} />
       <Route path="/login" element={<LoginScreen />} />
+      <Route path="/register" element={<RegisterScreen />} />
+      <Route path='' element={<AdminRoute />}>
+        <Route path='/admin/userlist' element={<UserListScreen />} />
+        <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
+      </Route>
     </Route>
   )
 )
