@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import { USERS_URL } from "../constants";
-import { apiSlice } from "./apiSlice";
-=======
 import { USERS_URL, CUSTOMERS_URL, USERS_URL1 } from "../constants";
 import { apiSlice } from "./apiSlice";
 
->>>>>>> origin/practical6
 export const usersApliSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         login: builder.mutation({
