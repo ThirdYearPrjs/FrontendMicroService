@@ -9,7 +9,8 @@ function HomeScreen() {
             <h1>Latest Products</h1>
             <Row>
                 {Products.map(product => (
-                    <Col sm={12} md={6} lg={4} xl={3}>
+                    // The 'key' must be on the outer-most element of the map function
+                    <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
                         <Product product={product} />
                     </Col>
                 ))}

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { useLogoutMutation } from '../slices/usersApiSlice';
+import { useLogoutMutation, useGetUserQuery } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 
 
@@ -19,6 +19,8 @@ function Header() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [logoutApiCall] = useLogoutMutation();
+
+    const { data: users } = useGetUserQuery();
 
     const logoutHandler = async () => {
         try {
@@ -69,7 +71,22 @@ function Header() {
                                     </Nav.Link>
                                 </LinkContainer>
                             )}
-
+                            {
+                                userInfo && userInfo.user.authorities.some(auth =>
+                                    auth.authority === 'Admin') && (
+                                    <NavDropdown title='Admin' id='adminmenu'>
+                                        <LinkContainer to='/admin/productlist'>
+                                            <NavDropdown.Item>Products</NavDropdown.Item>
+                                        </LinkContainer>
+                                        <LinkContainer to='/admin/userlist'>
+                                            <NavDropdown.Item>Users</NavDropdown.Item>
+                                        </LinkContainer>
+                                        <LinkContainer to='/admin/orderlist'>
+                                            <NavDropdown.Item>Orders</NavDropdown.Item>
+                                        </LinkContainer>
+                                    </NavDropdown>
+                                )
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
